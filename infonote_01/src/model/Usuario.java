@@ -95,6 +95,24 @@ public class Usuario {
 	
 	
 
+	/**
+	 * @param matricula
+	 * @param login
+	 * @param senha
+	 * @param nome
+	 * @param email
+	 * @param telefone
+	 */
+	public Usuario(int matricula, String login, String senha, String nome, String email, String telefone) {
+		super();
+		this.matricula = matricula;
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+	}
+
 	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS 
 	public  void mostrar() {
 		System.out.println("Matricula : " + matricula);

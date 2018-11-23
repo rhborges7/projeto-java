@@ -88,6 +88,22 @@ public class Pedido {
 		System.out.println("Situação : " + situacao);
 
 	}
+
+	/**
+	 * @param numero
+	 * @param dataEmissao
+	 * @param formaDePagamento
+	 * @param valorTotal
+	 * @param situacao
+	 */
+	public Pedido(int numero, String dataEmissao, String formaDePagamento, Double valorTotal, String situacao) {
+		super();
+		this.numero = numero;
+		this.dataEmissao = dataEmissao;
+		this.formaDePagamento = formaDePagamento;
+		this.valorTotal = valorTotal;
+		this.situacao = situacao;
+	}
 	
 	
 }

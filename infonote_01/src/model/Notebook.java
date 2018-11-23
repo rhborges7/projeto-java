@@ -115,4 +115,25 @@ public class Notebook {
 				+ dataCadastro;
 	}
 
+	/**
+	 * @param numeroNote
+	 * @param modelo
+	 * @param descricao
+	 * @param estoque
+	 * @param precoUnitario
+	 * @param figura
+	 * @param dataCadastro
+	 */
+	public Notebook(int numeroNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
+			String dataCadastro) {
+		super();
+		this.numeroNote = numeroNote;
+		this.modelo = modelo;
+		this.descricao = descricao;
+		this.estoque = estoque;
+		this.precoUnitario = precoUnitario;
+		this.figura = figura;
+		this.dataCadastro = dataCadastro;
+	}
+
 }
