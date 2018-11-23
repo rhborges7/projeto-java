@@ -111,7 +111,9 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
+	
+	
+	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
 	public void mostrar() {
 		System.out.println("Logradouro : " + logradouro);
 		System.out.println("Numero : " + numero);
@@ -121,5 +123,7 @@ public class Endereco {
 		System.out.println("Estado : " + estado);
 		System.out.println("CEP : " + cep);
 	}
+
+	
 
 }

@@ -108,12 +108,7 @@ public class Notebook {
 		this.dataCadastro = dataCadastro;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
+	// METODO TOSTRING PARAR DAR SAIDA NOS VALORES INDICADOS
 	public String toString() {
 		return "Notebook :" + numeroNote + "\n modelo :" + modelo + "\n descricao :" + descricao + "\n estoque :"
 				+ estoque + "\n precoUnitario" + precoUnitario + "\n figura :" + figura + "\n dataCadastro :"

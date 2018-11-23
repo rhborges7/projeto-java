@@ -92,8 +92,11 @@ public class Usuario {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+	
 
-	public void mostrar() {
+	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS 
+	public  void mostrar() {
 		System.out.println("Matricula : " + matricula);
 		System.out.println("Login: " + login);
 		System.out.println("Senha: " + senha);

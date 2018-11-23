@@ -29,6 +29,7 @@ public class ItemDePedido {
 		this.subtotal = subtotal;
 	}
 	
+	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
 	public void mostrar() {
 		System.out.println("Logradouro : " + qtde);
 		System.out.println("Numero : " + subtotal);

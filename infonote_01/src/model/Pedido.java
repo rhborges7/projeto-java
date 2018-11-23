@@ -77,7 +77,9 @@ public class Pedido {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-
+	
+	
+	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
 	public void mostrar() {
 		System.out.println("Data de Emissão : " + dataEmissao);
 		System.out.println("Numero : " + numero);
@@ -86,4 +88,6 @@ public class Pedido {
 		System.out.println("Situação : " + situacao);
 
 	}
+	
+	
 }
