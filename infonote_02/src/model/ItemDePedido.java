@@ -35,5 +35,14 @@ public class ItemDePedido {
 		System.out.println("Numero : " + subtotal);
 		
 	}
+	/**
+	 * @param qtde
+	 * @param subtotal
+	 */
+	public ItemDePedido(int qtde, double subtotal) {
+		super();
+		this.qtde = qtde;
+		this.subtotal = subtotal;
+	}
 
 }
