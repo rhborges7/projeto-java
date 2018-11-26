@@ -135,5 +135,15 @@ public class Notebook {
 		this.figura = figura;
 		this.dataCadastro = dataCadastro;
 	}
-
+	
+	public void mostrar() {
+		System.out.println("Numero do Notebook : " + numeroNote);
+		System.out.println("modelo : " + modelo);
+		System.out.println("Descrição : " + descricao);
+		System.out.println("Estoque : " + estoque);
+		System.out.println("Preço Unitario : " + precoUnitario);
+		System.out.println("Figura : " + figura);
+		System.out.println("Data de Cadastro : " + dataCadastro);
+	}
 }
+	

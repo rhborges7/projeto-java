@@ -36,17 +36,17 @@ public class Teste {
 	System.out.println("___________________________________________________________________________________");
 
 			Notebook ntbook1 = new Notebook(454, "Nao Sei", "sla", 54, 21.00, "sla", "21/10/1100");  //CRIAÇÃO DE UM OBJETO NOVO NA CLASSE Notebook E SET DOS VALORES
-			System.out.println(ntbook1.toString()); // USO DO METODO TO STRING PARA DAR SAIDA DOS VALORES INSERIDOS EM ntbook1 NO CONSOLE
+			ntbook1.mostrar(); // USO DO METODO MOSTRAR PARA DAR SAIDA NO CONSOLE DOS VALORES INSERIDOS EM ntbook1
 
 	System.out.println("___________________________________________________________________________________");
 
 			Notebook ntbook2 = new Notebook(50, "Indefinido 2", "Indefinido 2", 8, 21.00, "Indefinido 2", "21/10/1100"); //CRIAÇÃO DE UM OBJETO SEMELHANTE AO ANTERIOR NA CLASSE ItemDePedido E SET DOS VALORES
-			System.out.println(ntbook2.toString()); // USO DO METODO TO STRING PARA DAR SAIDA DOS VALORES INSERIDOS EM ntbook2 NO CONSOLE
+			ntbook2.mostrar(); // USO DO METODO MOSTRAR PARA DAR SAIDA NO CONSOLE DOS VALORES INSERIDOS EM ntbook2
 
 	System.out.println("___________________________________________________________________________________");
 
 			Notebook ntbook3 = new Notebook(60, "Indefinido 3", "Indefinido 3", 10, 23.50,"Indefinido 3", "22/11/2018"); //CRIAÇÃO DE UM OBJETO SEMELHANTE AO ANTERIOR NA CLASSE ItemDePedido E SET DOS VALORES
-			System.out.println(ntbook3.toString()); // USO DO METODO TO STRING PARA DAR SAIDA DOS VALORES INSERIDOS EM ntbook3 NO CONSOLE
+			ntbook3.mostrar(); // USO DO METODO MOSTRAR PARA DAR SAIDA NO CONSOLE DOS VALORES INSERIDOS EM ntbook3
 
 	}
 }
