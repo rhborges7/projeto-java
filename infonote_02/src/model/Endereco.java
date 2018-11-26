@@ -2,9 +2,7 @@ package model;
 
 public class Endereco {
 
-	public Endereco() {
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	private String logradouro;
 	private String numero;
@@ -133,6 +131,13 @@ public class Endereco {
 	 * @param estado
 	 * @param cep
 	 */
+	
+	
+	public Endereco() {
+		super();
+	}
+	
+	
 	public Endereco(String logradouro, String numero, String complemento, String bairro, String cidade, String estado,
 			String cep) {
 		super();
@@ -144,6 +149,11 @@ public class Endereco {
 		this.estado = estado;
 		this.cep = cep;
 	}
+
+	/**
+	 * 
+	 */
+	
 
 	
 

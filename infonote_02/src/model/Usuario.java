@@ -103,6 +103,12 @@ public class Usuario {
 	 * @param email
 	 * @param telefone
 	 */
+	
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Usuario(int matricula, String login, String senha, String nome, String email, String telefone) {
 		super();
 		this.matricula = matricula;
@@ -123,4 +129,9 @@ public class Usuario {
 		System.out.println("Telefone: " + telefone);
 
 	}
+
+	/**
+	 * 
+	 */
+	
 }

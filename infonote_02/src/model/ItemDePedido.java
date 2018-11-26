@@ -39,10 +39,19 @@ public class ItemDePedido {
 	 * @param qtde
 	 * @param subtotal
 	 */
+	public ItemDePedido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public ItemDePedido(int qtde, double subtotal) {
 		super();
 		this.qtde = qtde;
 		this.subtotal = subtotal;
 	}
+	/**
+	 * 
+	 */
+	
 
 }

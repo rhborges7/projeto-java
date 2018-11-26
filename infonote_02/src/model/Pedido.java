@@ -96,6 +96,12 @@ public class Pedido {
 	 * @param valorTotal
 	 * @param situacao
 	 */
+	public Pedido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	public Pedido(int numero, String dataEmissao, String formaDePagamento, Double valorTotal, String situacao) {
 		super();
 		this.numero = numero;
@@ -104,6 +110,8 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 		this.situacao = situacao;
 	}
+
+	
 	
 	
 }

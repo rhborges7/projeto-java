@@ -124,6 +124,15 @@ public class Notebook {
 	 * @param figura
 	 * @param dataCadastro
 	 */
+	/**
+	 * 
+	 */
+	public Notebook() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	public Notebook(int numeroNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
 			String dataCadastro) {
 		super();
@@ -145,5 +154,6 @@ public class Notebook {
 		System.out.println("Figura : " + figura);
 		System.out.println("Data de Cadastro : " + dataCadastro);
 	}
+
 }
 	
