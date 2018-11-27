@@ -2,11 +2,11 @@ package model;
 
 public class Pedido {
 
-	private int numero;
-	private String dataEmissao;
-	private String formaDePagamento;
-	private Double valorTotal;
-	private String situacao;
+	public int numero;
+	public String dataEmissao;
+	public String formaDePagamento;
+	public Double valorTotal;
+	public String situacao;
 
 	/**
 	 * @return the numero
@@ -103,6 +103,15 @@ public class Pedido {
 		this.formaDePagamento = formaDePagamento;
 		this.valorTotal = valorTotal;
 		this.situacao = situacao;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Pedido \n numero =" + numero + "\n dataEmissao =" + dataEmissao + "\n formaDePagamento =" + formaDePagamento
+				+ "\n valorTotal =" + valorTotal + "\n situacao =" + situacao ;
 	}
 	
 	

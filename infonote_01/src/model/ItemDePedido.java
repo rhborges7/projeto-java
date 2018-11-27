@@ -2,8 +2,8 @@ package model;
 
 public class ItemDePedido {
 	
-	private int qtde;
-	private double subtotal;
+	public int qtde;
+	public double subtotal;
 	/**
 	 * @return the qtde
 	 */
@@ -43,6 +43,13 @@ public class ItemDePedido {
 		super();
 		this.qtde = qtde;
 		this.subtotal = subtotal;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ItemDePedido \n qtde =" + qtde + "\n subtotal =" + subtotal;
 	}
 
 }

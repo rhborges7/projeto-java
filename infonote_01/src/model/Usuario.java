@@ -2,12 +2,12 @@ package model;
 
 public class Usuario {
 
-	private int matricula;
-	private String login;
-	private String senha;
-	private String nome;
-	private String email;
-	private String telefone;
+	public int matricula;
+	public String login;
+	public String senha;
+	public String nome;
+	public String email;
+	public String telefone;
 
 	/**
 	 * @return the matricula
@@ -122,5 +122,14 @@ public class Usuario {
 		System.out.println("Nome: " + nome);
 		System.out.println("Telefone: " + telefone);
 
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Usuario \n matricula =" + matricula + "\n login =" + login + "\n senha =" + senha + "\n nome =" + nome
+				+ "\n email =" + email + "\n telefone =" + telefone ;
 	}
 }

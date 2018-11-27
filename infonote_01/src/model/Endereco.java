@@ -6,13 +6,13 @@ public class Endereco {
 		// TODO Auto-generated constructor stub
 	}
 
-	private String logradouro;
-	private String numero;
-	private String complemento;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private String cep;
+	public String logradouro;
+	public String numero;
+	public String complemento;
+	public String bairro;
+	public String cidade;
+	public String estado;
+	public String cep;
 
 	/**
 	 * @return the logradouro
@@ -143,6 +143,15 @@ public class Endereco {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Endereco \n logradouro =" + logradouro + "\n numero =" + numero + "\n complemento =" + complemento
+				+ "\n bairro =" + bairro + "\n cidade =" + cidade + "\n estado =" + estado + "\n cep=" + cep ;
 	}
 
 	
