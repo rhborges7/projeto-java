@@ -7,6 +7,7 @@ public class Pedido {
 	private String formaDePagamento;
 	private Double valorTotal;
 	private String situacao;
+	private Endereco enderecoEntrega;
 
 	/**
 	 * @return the numero
@@ -86,6 +87,12 @@ public class Pedido {
 		System.out.println("Forma de Pagamento : " + formaDePagamento);
 		System.out.println("Valor Total : " + valorTotal);
 		System.out.println("Situação : " + situacao);
+		System.out.println("\n\nItens do Pedido: \n");
+			for (int i=0; i <itens.length; i++) {
+				if(itens[i] !=null) {
+						itens[i].mostrar();
+				}
+			}
 
 	}
 
@@ -110,7 +117,39 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 		this.situacao = situacao;
 	}
+	
+	
+	private ItemDePedido itens[] = new ItemDePedido[10];
 
+	/**
+	 * @return the enderecoEntrega
+	 */
+	public Endereco getEnderecoEntrega() {
+		return enderecoEntrega;
+	}
+
+	/**
+	 * @return the itens
+	 */
+	public ItemDePedido[] getItens() {
+		return itens;
+	}
+	
+	public Endereco setEnderecoEntrega() {
+		return enderecoEntrega;
+		}
+	
+	public boolean inserirItem(ItemDePedido item) {
+		for (int i=0; i < itens.length; i++) {
+			if (itens[i] == null) {
+				itens[i] = item;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	
 	
 	

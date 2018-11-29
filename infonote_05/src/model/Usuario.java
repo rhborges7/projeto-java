@@ -92,8 +92,6 @@ public class Usuario {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	
 
 	/**
 	 * @param matricula
@@ -103,12 +101,12 @@ public class Usuario {
 	 * @param email
 	 * @param telefone
 	 */
-	
+
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Usuario(int matricula, String login, String senha, String nome, String email, String telefone) {
 		super();
 		this.matricula = matricula;
@@ -119,8 +117,30 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS 
-	public  void mostrar() {
+	// INSERIR O PEDIDO NO VETOR
+	public boolean inserirPedido(Pedido pedido) {
+		for (int i = 0; i < pedidos.length; i++) {
+			if (pedidos[i] == null) {
+				pedidos[i] = pedido;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// INSERIR O ENDERECO NO VETOR
+	public boolean inserirEndereco(Endereco end) {
+		for (int i = 0; i < enderecos.length; i++) {
+			if (enderecos[i] == null) {
+				enderecos[i] = end;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
+	public void mostrar() {
 		System.out.println("Matricula : " + matricula);
 		System.out.println("Login: " + login);
 		System.out.println("Senha: " + senha);
@@ -130,8 +150,25 @@ public class Usuario {
 
 	}
 
+	private Endereco enderecos[] = new Endereco[10];
+	private Pedido pedidos[] = new Pedido[10];
+
+	/**
+	 * @return the enderecos
+	 */
+	public Endereco[] getEnderecos() {
+		return enderecos;
+	}
+
+	/**
+	 * @return the pedidos
+	 */
+	public Pedido[] getPedidos() {
+		return pedidos;
+	}
+
 	/**
 	 * 
 	 */
-	
+
 }
