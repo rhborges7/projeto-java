@@ -98,23 +98,7 @@ public class InfoNote {
 		}
 	}
 
-	/*
-	 * public void efetuarLogin2() {
-	 * 
-	 * String login = Teclado.lerTexto("Digite o Login : "); String senha =
-	 * Teclado.lerTexto("Digite a Senha : ");
-	 * 
-	 * for (int i=0;i>5;i--) { if (login.equals("admin") && senha.equals("1234")) {
-	 * System.out.println("Login Efetuado com Sucesso !"); logado = true; } else {
-	 * 
-	 * System.out.println("Login ou Senha Inválido!"); i++; i++; }
-	 * 
-	 * }
-	 * 
-	 * 
-	 * }
-	 */
-
+	
 	public void cadastrarUsuario() {
 
 		System.out.println("================================================================================");
