@@ -2,7 +2,7 @@ package model;
 
 public class Notebook {
 
-	private int numeroNote;
+	private String serialNote;
 	private String modelo;
 	private String descricao;
 	private int estoque;
@@ -11,17 +11,17 @@ public class Notebook {
 	private String dataCadastro;
 
 	/**
-	 * @return the numeroNote
+	 * @return the serialNote
 	 */
-	public int getNumeroNote() {
-		return numeroNote;
+	public String getNumeroNote() {
+		return serialNote;
 	}
 
 	/**
-	 * @param numeroNote the numeroNote to set
+	 * @param serialNote the serialNote to set
 	 */
-	public void setNumeroNote(int numeroNote) {
-		this.numeroNote = numeroNote;
+	public void setNumeroNote(String serialNote) {
+		this.serialNote = serialNote;
 	}
 
 	/**
@@ -109,14 +109,25 @@ public class Notebook {
 	}
 
 	// METODO TOSTRING PARAR DAR SAIDA NOS VALORES INDICADOS
-	public String toString() {
-		return "Notebook :" + numeroNote + "\n modelo :" + modelo + "\n descricao :" + descricao + "\n estoque :"
+	/*public String toString() {
+		return "Notebook :" + serialNote + "\n modelo :" + modelo + "\n descricao :" + descricao + "\n estoque :"
 				+ estoque + "\n precoUnitario" + precoUnitario + "\n figura :" + figura + "\n dataCadastro :"
 				+ dataCadastro;
+	}*/
+	
+	public String toString() {
+		final String ENTER = "\n";
+		String retValue = "";
+		
+		retValue = " Notebook :" + serialNote + ENTER +  "\n modelo :" + modelo + ENTER +  "\n descricao :" + descricao + ENTER + "\n estoque :"
+				+ estoque + ENTER +  "\n precoUnitario" + precoUnitario + ENTER + "\n figura :" + figura + ENTER + "\n dataCadastro :"
+				+ dataCadastro + ENTER;
+		
+		return retValue;
 	}
 
 	/**
-	 * @param numeroNote
+	 * @param serialNote
 	 * @param modelo
 	 * @param descricao
 	 * @param estoque
@@ -133,10 +144,10 @@ public class Notebook {
 	}
 	
 	
-	public Notebook(int numeroNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
+	public Notebook(String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
 			String dataCadastro) {
 		super();
-		this.numeroNote = numeroNote;
+		this.serialNote = serialNote;
 		this.modelo = modelo;
 		this.descricao = descricao;
 		this.estoque = estoque;
@@ -146,7 +157,7 @@ public class Notebook {
 	}
 	
 	public void mostrar() {
-		System.out.println("Numero do Notebook : " + numeroNote);
+		System.out.println("Numero do Notebook : " + serialNote);
 		System.out.println("modelo : " + modelo);
 		System.out.println("Descrição : " + descricao);
 		System.out.println("Estoque : " + estoque);

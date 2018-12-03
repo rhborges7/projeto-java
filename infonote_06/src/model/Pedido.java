@@ -1,26 +1,29 @@
 package model;
 
+import java.util.Arrays;
+
 public class Pedido {
 
-	private int numero;
+	private int numeroPedido;
 	private String dataEmissao;
 	private String formaDePagamento;
 	private Double valorTotal;
 	private String situacao;
 	private Endereco enderecoEntrega;
+	private ItemDePedido itens[] = new ItemDePedido[10];
 
 	/**
-	 * @return the numero
+	 * @return the numeroPedido
 	 */
 	public int getNumero() {
-		return numero;
+		return numeroPedido;
 	}
 
 	/**
-	 * @param numero the numero to set
+	 * @param numeroPedido the numeroPedido to set
 	 */
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setNumero(int numeroPedido) {
+		this.numeroPedido = numeroPedido;
 	}
 
 	/**
@@ -78,26 +81,36 @@ public class Pedido {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	
-	
-	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
-	public void mostrar() {
-		System.out.println("Data de Emissão : " + dataEmissao);
-		System.out.println("Numero : " + numero);
-		System.out.println("Forma de Pagamento : " + formaDePagamento);
-		System.out.println("Valor Total : " + valorTotal);
-		System.out.println("Situação : " + situacao);
-		System.out.println("\n\nItens do Pedido: \n");
-			for (int i=0; i <itens.length; i++) {
-				if(itens[i] !=null) {
-						itens[i].mostrar();
-				}
-			}
 
+	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
+	/*
+	 * public void mostrar() { System.out.println("Data de Emissão : " +
+	 * dataEmissao); System.out.println("Numero : " + numeroPedido);
+	 * System.out.println("Forma de Pagamento : " + formaDePagamento);
+	 * System.out.println("Valor Total : " + valorTotal);
+	 * System.out.println("Situação : " + situacao);
+	 * System.out.println("\n\nItens do Pedido: \n"); for (int i=0; i <itens.length;
+	 * i++) { if(itens[i] !=null) { itens[i].mostrar(); } }
+	 * 
+	 * }
+	 */
+
+	public String toString() {
+		final String ENTER = "\n";
+		String retValue = "";
+		
+		retValue = " Pedido : " + numeroPedido + ENTER + "\n Data de Emissao : " + dataEmissao + ENTER + "\n Forma De Pagamento : "
+				+ formaDePagamento + ENTER + "\n Valor Total : " + valorTotal + ENTER +  "\n Situacao : " + situacao
+				+ ENTER + "\n Endereco de Entrega=" + enderecoEntrega + ENTER + "\n Itens : " + Arrays.toString(itens) + ENTER;
+		for( int i=0; i< itens.length; i++) {
+			retValue += itens[i] + ENTER;
+		}return retValue;
 	}
+				
+	
 
 	/**
-	 * @param numero
+	 * @param numeroPedido
 	 * @param dataEmissao
 	 * @param formaDePagamento
 	 * @param valorTotal
@@ -107,19 +120,17 @@ public class Pedido {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public Pedido(int numero, String dataEmissao, String formaDePagamento, Double valorTotal, String situacao) {
+
+	public Pedido(int numeroPedido, String dataEmissao, String formaDePagamento, Double valorTotal, String situacao,
+			Endereco enderecoEntrega) {
 		super();
-		this.numero = numero;
+		this.numeroPedido = numeroPedido;
 		this.dataEmissao = dataEmissao;
 		this.formaDePagamento = formaDePagamento;
 		this.valorTotal = valorTotal;
 		this.situacao = situacao;
+		this.enderecoEntrega = enderecoEntrega;
 	}
-	
-	
-	private ItemDePedido itens[] = new ItemDePedido[10];
 
 	/**
 	 * @return the enderecoEntrega
@@ -134,13 +145,13 @@ public class Pedido {
 	public ItemDePedido[] getItens() {
 		return itens;
 	}
-	
+
 	public Endereco setEnderecoEntrega() {
 		return enderecoEntrega;
-		}
-	
+	}
+
 	public boolean inserirItem(ItemDePedido item) {
-		for (int i=0; i < itens.length; i++) {
+		for (int i = 0; i < itens.length; i++) {
 			if (itens[i] == null) {
 				itens[i] = item;
 				return true;
@@ -148,9 +159,5 @@ public class Pedido {
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
+
 }

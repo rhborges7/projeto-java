@@ -39,10 +39,19 @@ public class ItemDePedido {
 	}
 
 	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
-	public void mostrar() {
+	/*public void mostrar() {
 		System.out.println("Logradouro : " + qtde);
 		System.out.println("Numero : " + subtotal);
 
+	}*/
+	
+	public String toString() {
+		final String ENTER = "\n";
+		String retValue = "";
+		
+		retValue = "Quantidade : " + qtde + ENTER +  "\n Subtotal : " + subtotal + ENTER;
+		
+		return retValue;
 	}
 
 	/**

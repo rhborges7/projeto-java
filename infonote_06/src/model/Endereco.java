@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class Endereco {
 
 	
@@ -112,7 +114,7 @@ public class Endereco {
 	
 	
 	// METODO MOSTRAR PARAR DAR SAIDA NOS VALORES INDICADOS
-	public void mostrar() {
+	/*public void mostrar() {
 		System.out.println("Logradouro : " + logradouro);
 		System.out.println("Numero : " + numero);
 		System.out.println("Complemento : " + complemento);
@@ -120,6 +122,17 @@ public class Endereco {
 		System.out.println("Cidade : " + cidade);
 		System.out.println("Estado : " + estado);
 		System.out.println("CEP : " + cep);
+	} */
+	
+	public String toString() {
+		final String ENTER = "\n";
+		String retValue = "";
+		
+		retValue = "Logradouro : " + logradouro + ENTER +  "\n Numero : " + numero + ENTER +  "\n Complemento : " + complemento + ENTER + "\n Bairro : "
+				+ bairro + ENTER +  "\n Cidade : " + cidade + ENTER +  "\n Estado : " + estado + ENTER
+				+ "\n CEP :" + cep + ENTER;
+		
+		return retValue;
 	}
 
 	/**
