@@ -5,10 +5,13 @@ import util.Teclado;
 
 public class InfoNote {
 
-	Cliente codigoCliente;
+	Cliente cliente;
 	Notebook modelo[] = new Notebook[10];
 	Pedido pedido;
 	boolean logado = false;
+	InfoNote info2;
+	private static Cliente clienteGlobal = null;
+	private static Funcionario funcionarioGlobal = null;
 
 	public InfoNote() {
 
@@ -111,15 +114,27 @@ public class InfoNote {
 
 	public void efetuarLogin() {
 
-		String login, senha;
+		String login = "sair";
+		String senha = "sair";
+
 		login = Teclado.lerTexto("Digite o Login : ");
 		senha = Teclado.lerTexto("Digite a Senha : ");
-		if (login.equals("admin") && senha.equals("1234")) {
-			System.out.println("Login Efetuado com Sucesso !");
-			logado = true;
+
+		if (clienteGlobal != null) {
+			logado = clienteGlobal.validarLogin(login, senha);
+			if (logado) {
+				System.out.println("Login Efetuado com Sucesso !");
+			} else {
+				System.out.println("Login ou Senha Inválido!");
+				efetuarLogin();
+			}
 		} else {
-			System.out.println("Login ou Senha Inválido!");
-			efetuarLogin();
+			logado = funcionarioGlobal.validarLogin(login, senha);
+			if (logado) {
+				System.out.println("Login efetuado com sucesso");
+			} else {
+				System.out.println("Usuario ou senha Invalidos");
+			}
 
 		}
 	}
@@ -148,7 +163,8 @@ public class InfoNote {
 		Endereco endereco = new Endereco(logradouro, numero, complemento, bairro, cidade, estado, cep);
 
 		Cliente cliente = new Cliente(login, senha, tipo, nome, email, telefone, endereco);
-		
+		clienteGlobal = cliente;
+
 		System.out.println(cliente);
 		System.out.println(endereco);
 
@@ -156,7 +172,6 @@ public class InfoNote {
 		System.out.println("					Cliente Cadastrado com Sucesso!           					");
 		System.out.println("================================================================================");
 
-		
 	}
 
 	/*
@@ -171,22 +186,35 @@ public class InfoNote {
 	 * );
 	 * 
 	 * String login = Teclado.lerTexto("Login : "); String senha =
-	 * Teclado.lerTexto("Senha : "); String nome = Teclado.lerTexto("Nome : ");
-	 * String email = Teclado.lerTexto("Email : "); String telefone =
-	 * Teclado.lerTexto("Telefone : ");
+	 * Teclado.lerTexto("Senha : "); int tipo = 1; String codigoCliente =
+	 * Teclado.lerTexto("Codigo do Cliente:  "); String nome =
+	 * Teclado.lerTexto("Nome : "); String email = Teclado.lerTexto("Email : ");
+	 * String telefone = Teclado.lerTexto("Telefone : ");
+	 * 
+	 * String logradouro = Teclado.lerTexto("Logradouro : "); String numero =
+	 * Teclado.lerTexto("Numero : "); String complemento =
+	 * Teclado.lerTexto("Complemento : "); String bairro =
+	 * Teclado.lerTexto("Bairro : "); String cidade = Teclado.lerTexto("Cidade : ");
+	 * String estado = Teclado.lerTexto("Estado : "); String cep =
+	 * Teclado.lerTexto("CEP : "); Endereco endereco = new Endereco(logradouro,
+	 * numero, complemento, bairro, cidade, estado, cep);
 	 * 
 	 * 
-	 * codigoCliente = new Cliente(matricula, login, senha, nome, email, telefone);
+	 * Cliente cliente = new Cliente(login, senha, tipo, nome, email, telefone,
+	 * endereco); clienteGlobal = cliente;
+	 * 
+	 * funcionarioGlobal = funcionario; System.out.println(cliente);
+	 * System.out.println(endereco);
 	 * 
 	 * System.out.println(
 	 * "================================================================================"
 	 * ); System.out.
-	 * println("					Usuario Cadastrado com Sucesso!           					"
+	 * println("					Cliente Cadastrado com Sucesso!           					"
 	 * ); System.out.println(
 	 * "================================================================================"
 	 * );
 	 * 
-	 * System.out.println(codigoCliente); }
+	 * }
 	 */
 
 	@SuppressWarnings("unlikely-arg-type")

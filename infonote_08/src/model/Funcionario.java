@@ -1,6 +1,6 @@
 package model;
 
-public class Funcionario extends Usuario {
+public class Funcionario extends Usuario implements IUsuario {
 
 
 	/**
@@ -34,5 +34,30 @@ public class Funcionario extends Usuario {
 		super(login, senha, tipo);
 		this.matricula = matricula;
 		// TODO Auto-generated constructor stub
+		
+		
 	}
+
+	public boolean validarLogin(String login, String senha) {
+		 if (getLogin().equals(login) && getSenha().equals(senha)) {
+					return true;
+				} else {
+					return false;
+				
+				}
+			}
 }
+
+	
+
+
+
+
+
+
+
+
+
+
+	
+	

@@ -36,3 +36,7 @@ public class Funcionario extends Usuario {
 		// TODO Auto-generated constructor stub
 	}
 }
+
+
+	 
+
