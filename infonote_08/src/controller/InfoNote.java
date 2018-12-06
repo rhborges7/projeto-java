@@ -12,6 +12,7 @@ public class InfoNote {
 	InfoNote info2;
 	private static Cliente clienteGlobal = null;
 	private static Funcionario funcionarioGlobal = null;
+	public static String sair;
 
 	public InfoNote() {
 
@@ -48,6 +49,8 @@ public class InfoNote {
 			case 1:
 
 				info.efetuarLogin();
+				
+
 				break;
 
 			case 2:
@@ -114,12 +117,27 @@ public class InfoNote {
 
 	public void efetuarLogin() {
 
-		String login = "sair";
-		String senha = "sair";
+		String login;
+		String senha;
+		
 
 		login = Teclado.lerTexto("Digite o Login : ");
 		senha = Teclado.lerTexto("Digite a Senha : ");
+		
+		if (login.equals("sair") && senha.equals("sair")) {
+			String sair = Teclado.lerTexto("DESEJA SAIR DO SISTEMA?");
+			
+				if (sair.equals("sim")) {
+				System.out.println("VOCE SAIU");
+				System.out.println("================================================================================");
+				System.out.println("					Voce se fudeu com Sucesso!           					");
+				System.out.println("================================================================================");
+			
+				}
+		}
 
+		
+		// VALIDAÇÃO DOS LOGINS DOS CLIENTES
 		if (clienteGlobal != null) {
 			logado = clienteGlobal.validarLogin(login, senha);
 			if (logado) {
@@ -128,6 +146,7 @@ public class InfoNote {
 				System.out.println("Login ou Senha Inválido!");
 				efetuarLogin();
 			}
+			// VALIDAÇÃO DOS LOGINS DOS FUNCIONARIOS
 		} else {
 			logado = funcionarioGlobal.validarLogin(login, senha);
 			if (logado) {
@@ -137,6 +156,10 @@ public class InfoNote {
 			}
 
 		}
+		
+				
+		
+		
 	}
 
 	public void cadastrarCliente() {
