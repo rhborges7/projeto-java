@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.text.DateFormat;
 
-
 import model.*;
 import util.*;
 import util.GerarSenha;
@@ -33,7 +32,7 @@ public class InfoNote {
 	private static final int AJUDA = 8;
 	private static final int SAIR = 9;
 
-	public InfoNote() throws Exception {
+	public InfoNote() {
 
 		modelo[0] = new Notebook("445X45WE", "Negativo N22BR", "CPU Intel Core 2 Duo, Memoria 4 GB, HD 250 GB", 6,
 				1200.00, "img\\n22br.jpg", "19/05/2011");
@@ -61,7 +60,7 @@ public class InfoNote {
 	}
 
 	// MAIN
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 
 		InfoNote info = new InfoNote();
 
@@ -131,15 +130,13 @@ public class InfoNote {
 	public void mostrarMenu() {
 		if (logado == false) {
 			System.out.println("================================================================================");
-			System.out.println("                    InfoNote - Se não é Info não Vendemos                " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) 
-					+ " " + DateFormat.getTimeInstance().format(new Date()));
+			System.out.println("                    InfoNote - Se não é Info não Vendemos                "
+					+ DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " "
+					+ DateFormat.getTimeInstance().format(new Date()));
 			System.out.println("================================================================================");
-			
-			
-			
-			
+
 			if (logado == true) {
-				System.out.println("Seja bem vindo," + clienteGlobal.getNomeInvertido());
+				System.out.println("Seja bem vindo," + cliente.getNomeInvertido());
 			}
 			System.out.println("1 - Login");
 			System.out.println("2 - Cadastrar Cliente");

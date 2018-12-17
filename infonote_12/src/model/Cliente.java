@@ -132,6 +132,17 @@ public class Cliente extends Usuario implements IUsuario {
 		inserirEndereco(endereco);
 		// TODO Auto-generated constructor stub
 	}
+	
+	// SOBRECARGA DE METODO PARA SER USADA COM CLIENTE DAO
+	public Cliente(String login, String senha, int tipo, String codigoCliente, String nome, String email,
+			String telefone) {
+		super(login, senha, tipo);
+		this.codigoCliente = codigoCliente;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		
+	}
 
 	// INSERIR O PEDIDO NO VETOR
 	public boolean inserirPedido(Pedido pedido) {
@@ -187,16 +198,13 @@ public class Cliente extends Usuario implements IUsuario {
 	
 	public String getNomeInvertido() {
 		String nome, sobrenome;
-		int posicao = getNome().indexOf(" ");
+		int posicao = getNome().indexOf("");
 		nome = getNome().substring(0,posicao);
 		
-		posicao = getNome().lastIndexOf(" ");
+		posicao = getNome().lastIndexOf("");
 		sobrenome = getNome().substring(posicao + 1);
 		
 		return sobrenome + "," + nome;
 	}
 
-	
-	
-	
 }
