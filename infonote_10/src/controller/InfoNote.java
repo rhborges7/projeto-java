@@ -104,11 +104,11 @@ public class InfoNote {
 	public void mostrarMenu() {
 		if (logado == false) {
 			System.out.println("================================================================================");
-			System.out.println("                    InfoNote - Se não é Info não Vendemos                ");
+			System.out.println("                    InfoNote - Se não é Info não Vendemos                " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date())
+					+  " "  +
+					DateFormat.getTimeInstance().format(new Date()));
 			System.out.println("================================================================================");
-				DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()
-				+ "" +
-				DateFormat.getTimeInstance().format(new Date()));
+				
 			if (logado == true) {
 				System.out.println("Seja bem vindo," + cliente.getNomeInvertido());
 			}
