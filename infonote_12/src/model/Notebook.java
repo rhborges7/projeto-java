@@ -5,6 +5,7 @@ import java.util.Locale;
 
 public class Notebook {
 
+
 	private String serialNote;
 	private String modelo;
 	private String descricao;
@@ -118,6 +119,20 @@ public class Notebook {
 				+ dataCadastro;
 	}*/
 	
+	/**
+	 * @return the serialNote
+	 */
+	public String getSerialNote() {
+		return serialNote;
+	}
+
+	/**
+	 * @param serialNote the serialNote to set
+	 */
+	public void setSerialNote(String serialNote) {
+		this.serialNote = serialNote;
+	}
+
 	public String toString() {
 		final String ENTER = "\n";
 		String retValue = "";
