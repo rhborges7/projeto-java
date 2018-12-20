@@ -2,6 +2,8 @@ package model;
 
 import java.util.Arrays;
 
+import model.DAO.ClienteDAO;
+
 public class Cliente extends Usuario implements IUsuario {
 
 	private String codigoCliente;
@@ -10,7 +12,6 @@ public class Cliente extends Usuario implements IUsuario {
 	private String telefone;
 	private Endereco enderecos[] = new Endereco[10];
 	private Pedido pedidos[] = new Pedido[10];
-	
 
 	/**
 	 * @return the codigoCliente
@@ -133,6 +134,17 @@ public class Cliente extends Usuario implements IUsuario {
 		// TODO Auto-generated constructor stub
 	}
 
+	// SOBRECARGA DE METODO PARA SER USADA COM CLIENTE DAO
+	public Cliente(String login, String senha, int tipo, String codigoCliente, String nome, String email,
+			String telefone) {
+		super(login, senha, tipo);
+		this.codigoCliente = codigoCliente;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+
+	}
+
 	// INSERIR O PEDIDO NO VETOR
 	public boolean inserirPedido(Pedido pedido) {
 		for (int i = 0; i < pedidos.length; i++) {
@@ -168,35 +180,32 @@ public class Cliente extends Usuario implements IUsuario {
 
 		retValue = "Informações sobre o Cliente : " + super.toString() + ENTER + "Codigo do Cliente : " + codigoCliente
 				+ ENTER + "\n Nome : " + nome + ENTER + "\n Email : " + email + ENTER + "\n Telefone : " + telefone
-				+ ENTER + "\n Enderecos : " + Arrays.toString(enderecos) + ENTER + "\n Pedidos : "
-				+ Arrays.toString(pedidos) + ENTER + "\n Login :" + login + ENTER + "\n Senha : " + senha + ENTER
-				+ "\n Tipo : " + tipo + ENTER;
+				+ ENTER + "\n Pedidos : " + Arrays.toString(pedidos) + ENTER + "\n Login :" + login + ENTER
+				+ "\n Senha : " + senha + ENTER + "\n Tipo : " + tipo + ENTER;
 
 		return retValue;
 	}
 
-	//METODO PARAR VALIDAR O LOGIN 
+	// METODO PARAR VALIDAR O LOGIN
 	public boolean validarLogin(String login, String senha) {
-		if (getLogin().equals(login) && getSenha().equals(senha)) {
+		Cliente cliente = ClienteDAO.buscarPorLoginSenha(login, senha);
+		if (cliente != null) {
 			return true;
 		} else {
 			return false;
 
 		}
 	}
-	
+
 	public String getNomeInvertido() {
 		String nome, sobrenome;
 		int posicao = getNome().indexOf(" ");
-		nome = getNome().substring(0,posicao);
-		
+		nome = getNome().substring(0, posicao);
+
 		posicao = getNome().lastIndexOf(" ");
 		sobrenome = getNome().substring(posicao + 1);
-		
+
 		return sobrenome + "," + nome;
 	}
 
-	
-	
-	
 }

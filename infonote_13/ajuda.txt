@@ -1,0 +1,9 @@
+|1| Efetuar Login 
+
+Para efetuar o login é necessário que você esteja cadastro no sistema.
+
+|2| Cadastrar Cliente 
+
+Será necessário colocar todos os campos
+
+|3| 

@@ -9,6 +9,12 @@ public class Configurador {
 	private String idioma;
 	private String regiao;
 	private String arquivoAjuda;
+	private String url;
+	private String driver;
+	private String login;
+	private String senha;
+	
+	
 
 	public String getIdioma() {
 		return idioma;
@@ -22,7 +28,35 @@ public class Configurador {
 		return arquivoAjuda;
 	}
 
-public Configurador() {
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * @return the driver
+	 */
+	public String getDriver() {
+		return driver;
+	}
+
+	/**
+	 * @return the login
+	 */
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * @return the senha
+	 */
+	public String getSenha() {
+		return senha;
+	}
+
+	public Configurador() {
 		
 		// TRATAMENTO DE ERRO PARA CASO OS ARQUIVOS CITADOS NAO POSSAM SER LIDOS
 		try {
@@ -41,7 +75,10 @@ public Configurador() {
 		idioma = prop.getProperty("idioma");
 		regiao = prop.getProperty("regiao");
 		arquivoAjuda = prop.getProperty("ajuda"); 
-		
+		url = prop.getProperty("url");
+		driver = prop.getProperty("driver");
+		login = prop.getProperty("login");
+		senha = prop.getProperty("senha");
 		} catch(IOException ioe) {
 			System.out.println("Arquivo não Encontrado");
 			
@@ -49,7 +86,6 @@ public Configurador() {
 		
 
 	}
-	
 	
 	
 
