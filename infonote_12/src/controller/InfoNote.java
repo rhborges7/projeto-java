@@ -6,9 +6,10 @@ import java.text.DateFormat;
 
 import model.*;
 import model.DAO.ClienteDAO;
-import model.DAO.ContatoDAO;
+
 import model.DAO.EnderecoDAO;
 import model.DAO.FuncionarioDAO;
+import model.DAO.NotebookDAO;
 import model.DAO.UsuarioDAO;
 import util.*;
 import util.GerarSenha;
@@ -86,11 +87,11 @@ public class InfoNote {
 				break;
 
 			case CADASTRAR_USUARIO:
-				info.cadastrarCliente();
+				info.cadastrarUsuario();
 				break;
 
 			case BUSCAR_NOTEBOOK:
-				//info.buscarNotebook();
+				
 				info.mostrarNotebook();
 				break;
 
@@ -120,7 +121,7 @@ public class InfoNote {
 			case AJUDA:
 				info.ajuda();
 				break;
-				
+
 			case AREA_ADMINISTRATIVA:
 				info.areaAdministrativa();
 				break;
@@ -148,7 +149,7 @@ public class InfoNote {
 			System.out.println("================================================================================");
 
 			if (logado == true) {
-				System.out.println("Seja bem vindo," + cliente.getNomeInvertido());
+				System.out.println("Seja bem vindo, " + cliente.getNomeInvertido());
 			}
 			System.out.println("1 - Login");
 			System.out.println("2 - Cadastrar Cliente");
@@ -158,8 +159,8 @@ public class InfoNote {
 			System.out.println("================================================================================");
 			System.out.println("                    InfoNote - Se não é Info não Vendemos                ");
 			System.out.println("================================================================================");
-			System.out.println("                                             Você esta conectado como"
-					+ clienteGlobal.getNomeInvertido());
+			System.out.println("                    Você esta conectado como "
+					+ cliente.getNomeInvertido());
 			System.out.println("=======================================================================");
 			System.out.println("3 - Buscar Notebook");
 			System.out.println("4 - Inserir Notebook no Carrinho");
@@ -174,129 +175,131 @@ public class InfoNote {
 
 	public void efetuarLogin() {
 
-		String login,senha;
-		
+		String login, senha;
 
 		login = Teclado.lerTexto("Digite o Login : ");
 		senha = Teclado.lerTexto("Digite a Senha : ");
-		
+
 		cliente = ClienteDAO.buscarPorLoginSenha(login, senha);
-		clienteGlobal = cliente;
 
 		// VALIDAÇÃO DOS LOGINS DOS CLIENTES
-		if (clienteGlobal != null) {
-			logado = clienteGlobal.validarLogin(login, senha);
+		if (cliente != null) {
+			logado = cliente.validarLogin(login, senha);
 			if (logado) {
 				System.out.println("Login Efetuado com Sucesso !");
 			} else {
 				System.out.println("Login ou Senha Inválido!");
-				efetuarLogin();
+				
+				int opcao2 = 3;
+				do {
+					System.out.println("Digite: ");
+					System.out.println("|1| - Para efetuar Login");
+					System.out.println("|2| - Para cadastrar-se ");
+					System.out.println("|3| - Para sair do sistema ");
+
+					opcao2 = Teclado.lerInt("");
+
+					switch (opcao2) {
+					case 1:
+						efetuarLogin();
+						break;
+					case 2:
+						cadastrarUsuario();
+						break;
+					case 3:
+						System.out.println("Obrigado e volte sempre!");
+
+					default:
+						System.out.println("Opção invalida");
+					}
+				} while (logado == false);
+
+
 			}
 			// VALIDAÇÃO DOS LOGINS DOS FUNCIONARIOS
-		} 
-		
-		int opcao2 = 3;
-		do {
-				System.out.println("Digite: ");
-				System.out.println("|1| - Para efetuar Login");
-				System.out.println("|2| - Para cadastrar-se ");
-				System.out.println("|3| - Para sair do sistema ");
 				
-				opcao2 = Teclado.lerInt("");
-				
-				switch (opcao2) {
-				case 1:
-					efetuarLogin();
-					break;
-				case 2:
-					cadastrarCliente();
-					break;
-				case 3:
-					System.out.println("Obrigado e volte sempre!");
-					
-				default:
-					System.out.println("Opção invalida");
-				}
-		} while(logado);
+			
+			
+			
+		}
 
 	}
-	
+
 	public void efetuarLoginAdm() {
 		String login, senha;
 		login = Teclado.lerTexto("Digite o login : ");
 		senha = Teclado.lerTexto("Digite a senha : ");
-		
-			Funcionario funcionario = FuncionarioDAO.buscarPorLoginSenha(login, senha);
-			
-			if (funcionario !=null) {
-				logado = funcionario.validarLogin(login, senha);
-				
-			}else {
-				if (logado) {
-					System.out.println("Login efetuado com sucesso!");
-				} else {
-					System.out.println("Usuario ou senha inválido.");
-				}
+
+		Funcionario funcionario = FuncionarioDAO.buscarPorLoginSenha(login, senha);
+
+		if (funcionario != null) {
+			logado = funcionario.validarLogin(login, senha);
+
+		} else {
+			if (logado) {
+				System.out.println("Login efetuado com sucesso!");
+			} else {
+				System.out.println("Usuario ou senha inválido.");
 			}
+		}
 	}
-	
+
 	public void areaAdministrativa() {
 		InfoNote info = new InfoNote();
-		
+
 		efetuarLoginAdm();
-		
+
 		System.out.println("Opções Administrativas \n");
 		System.out.println("1 - Cadastrar Notebook");
 		System.out.println("2 - Mostrar Notebooks");
 		System.out.println("3 - Editar Notebook");
 		System.out.println("4 - Excluir Notebook");
 		System.out.println("5 - Sair");
-		
+
 		int opcao = 5;
-			do {
-				opcao = Teclado.lerInt("Digite sua opção: ");
-				
-				switch (opcao ) {
-				
-				case 1:
-					info.cadastrarNotebook();
-					break;
-				case 2:
-					info.mostrarNotebook();
-					break;
-				case 3 :
-					info.editarNotebook();
-				case 4:
-					info.excluirNotebook();
-					break;
-				case 5:
-					System.out.println("Saida do Sistema");
-					default :
-						System.out.println("Opção invalida!");
-				}
-				Teclado.lerTexto("Pressione uma tecla para continuar...");
-			} while (opcao !=5);
+		do {
+			opcao = Teclado.lerInt("Digite sua opção: ");
+
+			switch (opcao) {
+
+			case 1:
+				info.cadastrarNotebook();
+				break;
+			case 2:
+				info.mostrarNotebook();
+				break;
+			case 3:
+				info.editarNotebook();
+			case 4:
+				info.excluirNotebook();
+				break;
+			case 5:
+				System.out.println("Saida do Sistema");
+			default:
+				System.out.println("Opção invalida!");
+			}
+			Teclado.lerTexto("Pressione uma tecla para continuar...");
+		} while (opcao != 5);
 	}
-	
+
 	public void mostrarNotebook() {
-		Notebook[] notebooks = NotebookDAO.buscarTodos();
 		
-		for(int i=0; i<notebooks.length; i++) {
-			System.out.println(
-					notebooks[i].getSerialNote() + "--------" + 
-					notebooks[i].getModelo() + "--------" +
-					notebooks[i].getDescricao() + "--------" + 
-					notebooks[i].getEstoque() + "--------"+
-					notebooks[i].getPrecoUnitario() + "--------"+
-					notebooks[i].getFigura() + "--------"+
-					notebooks[i].getDataCadastro());
+		if (logado) {
 			
+		Notebook[] notebooks = NotebookDAO.buscarTodos();
+
+		for (int i = 0; i < notebooks.length; i++) {
+			System.out.println(notebooks[i].getSerialNote() + "--------" + notebooks[i].getModelo() + "--------"
+					+ notebooks[i].getDescricao() + "--------" + notebooks[i].getEstoque() + "--------"
+					+ notebooks[i].getPrecoUnitario() + "--------" + notebooks[i].getFigura() + "--------"
+					+ notebooks[i].getDataCadastro());
+
 		}
 		
-		
-		
+		}
+
 	}
-	
+
 	public void editarNotebook() {
 		System.out.println("================================================");
 		System.out.println("	   Atualizar Informações do Notebook				");
@@ -308,29 +311,29 @@ public class InfoNote {
 		double precoUnitario = Teclado.lerDouble("Preço Unitario do Notebook: ");
 		String figura = Teclado.lerTexto("Imagem do Notebook: ");
 		String dataCadastro = Teclado.lerTexto("Data de Cadastro: ");
-		
+
 		NotebookDAO.atualizar(serialNote, modelo, descricao, estoque, precoUnitario, figura, dataCadastro);
-		
+
 		System.out.println("Mensagem atualizada com sucesso");
-		
+
 	}
-	
+
 	public void excluirNotebook() {
-		
-		
+
 		System.out.println("================================================");
 		System.out.println("		 Apagar um Notebook			");
 		System.out.println("================================================");
 		String serialNote = Teclado.lerTexto("Digite o número do notebook a ser apagado :");
-		
+
 		NotebookDAO.excluir(serialNote);
-		
+
 		System.out.println("Notebook apagado com sucesso");
-		
+
 	}
 
-	
-	public void cadastrarCliente() {
+	public void cadastrarUsuario() {
+
+		Cliente cliente;
 
 		System.out.println("================================================================================");
 		System.out.println("                    InfoNote - Cadastro de Usuarios                ");
@@ -342,7 +345,7 @@ public class InfoNote {
 			senha = GerarSenha.gerarSenha();
 			System.out.println("Senha gerada:" + senha);
 		}
-		int tipo = 0; //TODO CLIENTE É TIPO 0
+		int tipo = 0; // TODO CLIENTE É TIPO 0
 		String codigoCliente = Teclado.lerTexto("Codigo do Cliente:  ");
 		String nome = Teclado.lerTexto("Nome : ");
 		String email = Teclado.lerTexto("Email : ");
@@ -355,19 +358,13 @@ public class InfoNote {
 		String cidade = Teclado.lerTexto("Cidade : ");
 		String estado = Teclado.lerTexto("Estado : ");
 		String cep = Teclado.lerTexto("CEP : ");
-		
-		usuario = UsuarioDAO.inserir(login, senha, tipo);
-		
-		cliente = ClienteDAO.inserir(login, senha, tipo, codigoCliente, nome, email, telefone);
-		
-		Endereco endereco = EnderecoDAO.inserir(logradouro, numero, complemento, bairro, cidade, estado, cep, codigoCliente);
-		
-		
-		
-		
 
-		
-		
+		usuario = UsuarioDAO.inserir(login, senha, tipo);
+
+		cliente = ClienteDAO.inserir(login, senha, tipo, codigoCliente, nome, email, telefone);
+
+		Endereco endereco = EnderecoDAO.inserir(logradouro, numero, complemento, bairro, cidade, estado, cep,
+				codigoCliente);
 
 		System.out.println(cliente);
 		System.out.println(endereco);
@@ -377,9 +374,6 @@ public class InfoNote {
 		System.out.println("================================================================================");
 
 	}
-
-	
-
 
 	public void inserirNotebook() {
 		// LÊ O NOTEBOOK ESCOLHIDO DO TECLADO
@@ -408,7 +402,7 @@ public class InfoNote {
 	}
 
 	public void buscarNotebook() {
-		
+
 	}
 
 	public void manterCarrinho() {
@@ -423,13 +417,12 @@ public class InfoNote {
 		System.out.println(ajuda.getTexto());
 
 	}
-	
+
 	public void cadastrarNotebook() {
 		System.out.println("===========================================================");
 		System.out.println("		Cadastrar Um Novo Notebook ");
 		System.out.println("===========================================================");
-		
-		
+
 		String serialNote = Teclado.lerTexto("Numero de Serie do Notebook: ");
 		String modelo = Teclado.lerTexto("Modelo do Notebook: ");
 		String descricao = Teclado.lerTexto("Descricao do Notebook: ");
@@ -437,15 +430,12 @@ public class InfoNote {
 		double precoUnitario = Teclado.lerDouble("Preço Unitario do Notebook: ");
 		String figura = Teclado.lerTexto("Imagem do Notebook: ");
 		String dataCadastro = Teclado.lerTexto("Data de Cadastro: ");
-		
-		
-		Notebook notebook  = NotebookDAO.inserirNotebook(serialNote, modelo, descricao, estoque, precoUnitario, figura, dataCadastro);
-		
+
+		Notebook notebook = NotebookDAO.inserirNotebook(serialNote, modelo, descricao, estoque, precoUnitario, figura,
+				dataCadastro);
+
 		System.out.println(notebook);
-		
-		
-		
+
 	}
-	
-	
+
 }

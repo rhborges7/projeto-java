@@ -32,7 +32,7 @@ public class ClienteDAO {
 
 		try {
 			// CRIAÇÃO DO INSERT
-			String sql = "insert into cliente" + "(codigocliente, nome, email, telefone, fklogin)"
+			String sql = "insert into cliente " + "(codigocliente, nome, email, telefone, fklogin)"
 					+ "values (?,?,?,?,?)";
 			// OBTER A CONEXAO COM O BANCO DE DADOS
 			Conexao conex = new Conexao(cliDAO.url, cliDAO.driver, cliDAO.login, cliDAO.senha);
@@ -48,6 +48,7 @@ public class ClienteDAO {
 			comando.setString(3, email);
 			comando.setString(4, telefone);
 			comando.setString(5, login);
+
 			// NAO É fklogin PQ AQUI A REFERENCIA É DA CLASSE
 
 			// COMANDO EXECUTADO
@@ -63,44 +64,33 @@ public class ClienteDAO {
 		return cliente;
 	}
 
+	
+
 	public static Cliente buscarPorLoginSenha(String login, String senha) {
 		Cliente cliente = null;
-		
 		ClienteDAO cliDAO = new ClienteDAO();
-		
 		try {
 			
-			String sql = "Select * from usuario u, cliente c" + 
-			"where u.login=c.fklogin and u.login = ?" + 
-			"and u.senha = ?";
-			
+			String sql = "Select * from usuario u, cliente c " + "where u.login=c.fklogin and u.login = ? "
+					+ "and u.senha = ?";
 			Conexao conex = new Conexao(cliDAO.url, cliDAO.driver, cliDAO.login, cliDAO.senha);
-			
 			Connection con = conex.obterConexao();
-			
 			PreparedStatement comando = con.prepareStatement(sql);
-			
-			comando.setString(1,login);
-			comando.setString(2,senha);
-			
+			comando.setString(1, login);
+			comando.setString(2, senha);
 			ResultSet rs = comando.executeQuery();
-			
-			if(rs.next()) {
-				cliente = new Cliente(
-						rs.getString("login"),
-						rs.getString("senha"),
-						rs.getInt("tipo"),
-						rs.getString("codigocliente"),
-						rs.getString("nome"),
-						rs.getString("email"),
+			if (rs.next()) {
+				cliente = new Cliente(rs.getString("login"), rs.getString("senha"), rs.getInt("tipo"),
+						rs.getString("codigocliente"), rs.getString("nome"), rs.getString("email"),
 						rs.getString("telefone"));
-						
-			}rs.close();
+			}
+			rs.close();
 			comando.close();
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} return cliente;
+		}
+		return cliente;
 	}
 
 }

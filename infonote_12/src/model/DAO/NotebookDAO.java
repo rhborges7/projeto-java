@@ -1,10 +1,11 @@
-package model;
+package model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import model.Notebook;
 import util.Conexao;
 import util.Configurador;
 

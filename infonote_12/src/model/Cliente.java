@@ -199,10 +199,10 @@ public class Cliente extends Usuario implements IUsuario {
 
 	public String getNomeInvertido() {
 		String nome, sobrenome;
-		int posicao = getNome().indexOf("");
+		int posicao = getNome().indexOf(" ");
 		nome = getNome().substring(0, posicao);
 
-		posicao = getNome().lastIndexOf("");
+		posicao = getNome().lastIndexOf(" ");
 		sobrenome = getNome().substring(posicao + 1);
 
 		return sobrenome + "," + nome;
