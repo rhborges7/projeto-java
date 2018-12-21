@@ -22,8 +22,6 @@ public class InfoNote {
 	Pedido pedido;
 	boolean logado = false; // INDICA SE O USUARIO ESTÁ LOGADO
 	InfoNote info2;
-	private static Cliente clienteGlobal = null;
-	private static Funcionario funcionarioGlobal = null;
 	public static String sair;
 	Configurador config;
 	Ajuda ajuda;
@@ -42,6 +40,14 @@ public class InfoNote {
 
 	public InfoNote() {
 
+		// CRIA OBJETO DE CONFIGURAÇÕES
+		config = new Configurador();
+
+		Locale.setDefault(new Locale(config.getIdioma(), config.getRegiao()));
+
+		// CRIA O OBJETO AJUDA
+		ajuda = new Ajuda(config.getArquivoAjuda());
+
 		modelo[0] = new Notebook("445X45WE", "Negativo N22BR", "CPU Intel Core 2 Duo, Memoria 4 GB, HD 250 GB", 6,
 				1200.00, "img\\n22br.jpg", "19/05/2011");
 
@@ -56,14 +62,6 @@ public class InfoNote {
 
 		modelo[4] = new Notebook("D1F45DFSD", "BradescoTech BD22BR", "CPU AMD Phenon II, Memoria 4 GB, HD 500 GB", 2,
 				1900.00, "img\\bd22br.jpg", "10/06/2011");
-
-		// CRIA OBJETO DE CONFIGURAÇÕES
-		config = new Configurador();
-
-		Locale.setDefault(new Locale(config.getIdioma(), config.getRegiao()));
-
-		// CRIA O OBJETO AJUDA
-		ajuda = new Ajuda(config.getArquivoAjuda());
 
 	}
 
@@ -91,7 +89,7 @@ public class InfoNote {
 				break;
 
 			case BUSCAR_NOTEBOOK:
-				
+
 				info.mostrarNotebook();
 				break;
 
@@ -159,8 +157,7 @@ public class InfoNote {
 			System.out.println("================================================================================");
 			System.out.println("                    InfoNote - Se não é Info não Vendemos                ");
 			System.out.println("================================================================================");
-			System.out.println("                    Você esta conectado como "
-					+ cliente.getNomeInvertido());
+			System.out.println("                    Você esta conectado como " + cliente.getNomeInvertido());
 			System.out.println("=======================================================================");
 			System.out.println("3 - Buscar Notebook");
 			System.out.println("4 - Inserir Notebook no Carrinho");
@@ -189,7 +186,7 @@ public class InfoNote {
 				System.out.println("Login Efetuado com Sucesso !");
 			} else {
 				System.out.println("Login ou Senha Inválido!");
-				
+
 				int opcao2 = 3;
 				do {
 					System.out.println("Digite: ");
@@ -214,13 +211,9 @@ public class InfoNote {
 					}
 				} while (logado == false);
 
-
 			}
 			// VALIDAÇÃO DOS LOGINS DOS FUNCIONARIOS
-				
-			
-			
-			
+
 		}
 
 	}
@@ -240,6 +233,7 @@ public class InfoNote {
 				System.out.println("Login efetuado com sucesso!");
 			} else {
 				System.out.println("Usuario ou senha inválido.");
+				System.exit(0);
 			}
 		}
 	}
@@ -270,6 +264,7 @@ public class InfoNote {
 				break;
 			case 3:
 				info.editarNotebook();
+				break;
 			case 4:
 				info.excluirNotebook();
 				break;
@@ -283,19 +278,27 @@ public class InfoNote {
 	}
 
 	public void mostrarNotebook() {
-		
-		if (logado) {
-			
-		Notebook[] notebooks = NotebookDAO.buscarTodos();
 
-		for (int i = 0; i < notebooks.length; i++) {
-			System.out.println(notebooks[i].getSerialNote() + "--------" + notebooks[i].getModelo() + "--------"
-					+ notebooks[i].getDescricao() + "--------" + notebooks[i].getEstoque() + "--------"
-					+ notebooks[i].getPrecoUnitario() + "--------" + notebooks[i].getFigura() + "--------"
-					+ notebooks[i].getDataCadastro());
+		/*
+		 * Notebook[] notebooks = NotebookDAO.buscarTodos(); for (int i = 0; i <
+		 * notebooks.length; i++) { System.out.println(notebooks[i].getSerialNote() +
+		 * "--------" + notebooks[i].getModelo() + "--------" +
+		 * notebooks[i].getDescricao() + "--------" + notebooks[i].getEstoque() +
+		 * "--------" + notebooks[i].getPrecoUnitario() + "--------" +
+		 * notebooks[i].getFigura() + "--------" + notebooks[i].getDataCadastro());
+		 * 
+		 * }
+		 */
 
-		}
-		
+		Notebook[] notebook = NotebookDAO.buscarTodos();
+		for (int i = 0; i < notebook.length; i++) {
+			if (notebook[i] != null) {
+				System.out.println(notebook[i].getSerialNote() + "-----" + notebook[i].getModelo() + "-----"
+						+ notebook[i].getDescricao() + "-----" + notebook[i].getFigura() + "-----"
+						+ notebook[i].getDataCadastro() + "-----" + notebook[i].getEstoque() + "-----"
+						+ notebook[i].getPrecoUnitario());
+
+			}
 		}
 
 	}
@@ -304,15 +307,16 @@ public class InfoNote {
 		System.out.println("================================================");
 		System.out.println("	   Atualizar Informações do Notebook				");
 		System.out.println("================================================");
-		String serialNote = Teclado.lerTexto("Digite o número id da mensagem a ser editada :");
-		String modelo = Teclado.lerTexto("Modelo do Notebook: ");
+		String serialNote = Teclado.lerTexto("Digite o numero de serie do notebook a ser editado :");
+		// NotebookDAO.buscarTodos(serialNote);
+
 		String descricao = Teclado.lerTexto("Descricao do Notebook: ");
 		int estoque = Teclado.lerInt("Estoque: ");
 		double precoUnitario = Teclado.lerDouble("Preço Unitario do Notebook: ");
 		String figura = Teclado.lerTexto("Imagem do Notebook: ");
 		String dataCadastro = Teclado.lerTexto("Data de Cadastro: ");
 
-		NotebookDAO.atualizar(serialNote, modelo, descricao, estoque, precoUnitario, figura, dataCadastro);
+		NotebookDAO.atualizar(serialNote, descricao, estoque, precoUnitario, figura, dataCadastro);
 
 		System.out.println("Mensagem atualizada com sucesso");
 
@@ -323,7 +327,7 @@ public class InfoNote {
 		System.out.println("================================================");
 		System.out.println("		 Apagar um Notebook			");
 		System.out.println("================================================");
-		String serialNote = Teclado.lerTexto("Digite o número do notebook a ser apagado :");
+		String serialNote = Teclado.lerTexto("Digite o número de Serie do Notebook a ser apagado :");
 
 		NotebookDAO.excluir(serialNote);
 
@@ -401,9 +405,13 @@ public class InfoNote {
 		}
 	}
 
-	public void buscarNotebook() {
-
-	}
+	/*
+	 * public void buscarNotebook() { for (int i = 0; i < notebooks.length; i++) {
+	 * if (notebooks[i] != null) { System.out.println(notebooks[i].getnumeroNote() +
+	 * "-----" + notebooks[i].getModelo()); } }
+	 * 
+	 * }
+	 */
 
 	public void manterCarrinho() {
 		System.out.println(" manterCarrinho - Em Construção");

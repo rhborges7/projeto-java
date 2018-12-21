@@ -105,6 +105,10 @@ public class NotebookDAO {
 
 	}
 
+	
+
+	
+
 	public static Notebook excluir(String serialNote) {
 
 		Notebook notebook = null;
@@ -113,7 +117,7 @@ public class NotebookDAO {
 		try {
 
 			// CRIAÇÃO DO DELETE
-			String sql = "delete from contato where id_notebook = ? ";
+			String sql = "delete from contato where serialNote = ? ";
 
 			// OBTER A CONEXÃO COM O BANCO DE DADOS
 			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
@@ -136,16 +140,22 @@ public class NotebookDAO {
 		return notebook;
 
 	}
+	
+	
 
-	public static Notebook atualizar(String serialNote, String modelo, String descricao, int estoque,
+	public static Notebook atualizar(String serialNote, String descricao, int estoque,
 			double precoUnitario, String figura, String dataCadastro) {
-		
+
 		Notebook notebook = null;
 		NotebookDAO noteDAO = new NotebookDAO();
 		try {
-			// CRIAÇÃO DO UPDATE 
-			String sql = "update contato set mensagem = ? where id_notebook = ?";
-
+			// CRIAÇÃO DO UPDATE
+			String sql = "update notebook set "
+					+ " descricao = ?,  estoque = ?, "
+					+ " precoUnitario = ?, figura = ?, dataCadastro = ? "
+					+ " where "
+					+ " serialnote = ? ";
+			
 			// OBTER A CONEXÃO COM O BANCO DE DADOS
 			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 			// ABRIR A CONEXÃO
@@ -154,13 +164,14 @@ public class NotebookDAO {
 			// PREPARAR O COMANDO PARA SER EXECUTADO
 			PreparedStatement comando = con.prepareStatement(sql);
 
-			comando.setString(1, serialNote);
-			comando.setString(2, modelo);
-			comando.setString(3, descricao);
-			comando.setInt(4, estoque);
-			comando.setDouble(5, precoUnitario);
-			comando.setString(6, figura);
-			comando.setString(7, dataCadastro);
+			
+			
+			comando.setString(1, descricao);
+			comando.setInt(2, estoque);
+			comando.setDouble(3, precoUnitario);
+			comando.setString(4, figura);
+			comando.setString(5, dataCadastro);
+			comando.setString(6, serialNote);
 
 			// COMANDO EXECUTADO
 			comando.executeUpdate();
@@ -169,53 +180,8 @@ public class NotebookDAO {
 
 		}
 
-	return notebook;
-	
+		return notebook;
+
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
